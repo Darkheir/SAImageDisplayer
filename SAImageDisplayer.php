@@ -7,7 +7,7 @@ class SAImageDisplayer extends CWidget {
      * to display. The name and the sizes have to be
      * defined in the config.
      */
-    public $size = "originals";
+    public $size = "original";
 
     /**
      * Class of the href link
@@ -117,12 +117,17 @@ class SAImageDisplayer extends CWidget {
     private $imageFile;
 
     public function init() {
-        $this->setWidthAndHeight();
         $this->setBasePath();
-        $this->checkIfFolderExists();
-        $this->defineImageFile();
-        $this->createImagesIfNotExists();
-        $this->defineSrc();
+		if( $this->size !== 'original') {
+			$this->setWidthAndHeight();
+			$this->checkIfFolderExists();
+			$this->defineImageFile($this->size);
+			$this->createImagesIfNotExists();
+			$this->defineSrc($this->size);
+		} else {
+			$this->defineImageFile($this->originalFolderName);
+			$this->defineSrc($this->originalFolderName);
+		}
     }
 
     public function run() {
@@ -132,8 +137,8 @@ class SAImageDisplayer extends CWidget {
     /**
      * Set the src to the file
      */
-    private function defineSrc() {
-        $this->src = $this->baseDir . '/'. $this->size . '/' . $this->image;
+    private function defineSrc($imageFolder) {
+        $this->src = $this->baseDir . '/'. $imageFolder . '/' . $this->image;
     }
 
     /**
@@ -141,7 +146,7 @@ class SAImageDisplayer extends CWidget {
      * or the default one if the previous one doesn't exist.
      * Throw an error if the image given doesn't exist and no default image is defined
      */
-    private function defineImageFile() {
+    private function defineImageFile($imageFolder) {
         if (!$this->image) {
             throw new Exception('Image cannot be null!');
         }
@@ -149,10 +154,11 @@ class SAImageDisplayer extends CWidget {
         if(!file_exists($this->originalFile) && $this->defaultImage !== null){
             $this->image = $this->defaultImage;
             $this->originalFile = $this->basePath . '/' . $this->originalFolderName . '/' . $this->image;
-        } elseif (!file_exists($this->originalFile) && $this->defaultImage == null) {
+        } 
+        if (!file_exists($this->originalFile)) {
             throw new Exception($this->image . ' do not exists!');
         }
-        $this->imageFile = $this->basePath . '/' . $this->size . '/' . $this->image;
+        $this->imageFile = $this->basePath . '/' . $imageFolder . '/' . $this->image;
     }
 
     /**
@@ -191,7 +197,7 @@ class SAImageDisplayer extends CWidget {
     }
 
     private function setWidthAndHeight() {
-        if($this->group != null){
+        if($this->group !== null){
             $size =$this->groups[$this->group][$this->size];
         } else {
             $size = $this->sizes[$this->size];

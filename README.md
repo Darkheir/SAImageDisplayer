@@ -15,14 +15,15 @@ This extension is based on justintimeimageresizer extension adding some improvem
 * We can define where we would like to store the images (inside the webroot folder)
 * We can choose the name of the folder storing the originals images
 * If the folder that should contain the resized image doesn't exist then the widget try to create it before throwing an error
+* Since V1.1: We can display the original file (with the original size)
 
 ##Requirements 
 
-* Yii 1.1 orvabove
+* Yii 1.1 or above
 * PHP 5.3
 * image (yii extension)
 
-##Installation:
+##Installation
 
 To install this extension it's really easy, all you have to do is extract the `SAImageDisplayer.php` file in your ``extension` folder!
 
@@ -162,7 +163,7 @@ return array(
 );
 ```
 
-## Usage:
+## Usage
 
 For the usage, I'll assume that you have followed the configuration step above. If not, each params defined before need to be put in each widget call in your views.
 
@@ -192,6 +193,14 @@ This way you can set:
 * The class using `class`
 * The id => `id`
 * The style => `style`
+
+### Display the original sized file (since V1.1)
+If you want to display the original file with its original size (for a gallery for example) you can do it by not setting `size` or setting it to `original`:
+```php
+<?php $this->widget('ext.SAImageDisplayer', array(
+    'image' => 'yourImage.png',
+)); ?>
+```
 
 ### And if my image could not exists?
 
@@ -294,13 +303,13 @@ This way you'll endup with a structure looking like:
 
 ## Please Note
 
-Don't hesitate to ask for help or tell me any issue you could meet while using the plugin!
-If you see som typo errors in this extension page please tell me, English is not my mother tongue so there might have plenty of them.
-Feel free to provide some ideas of improvment and if you provide some pull request on github I'll most definitely examinate your code and add it to the widget if I thin it adds something!
+Don't hesitate to ask for help or tell me any issues you could meet while using the plugin!
+If you see some typo errors in this extension page please tell me, English is not my mother tongue so there might have plenty of them.
+
+Feel free to provide some ideas of improvment and if you provide some pull request on github I'll most definitely examinate your code and add it to the widget if I think it adds something!
 
 ## Links
 
 * [The Github page](https://github.com/Darkheir/SAImageDisplayer)
-* The forum thread
 
 
