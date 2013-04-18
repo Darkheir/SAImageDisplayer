@@ -16,7 +16,7 @@ This extension is based on justintimeimageresizer extension adding some improvem
 * We can choose the name of the folder storing the originals images
 * If the folder that should contain the resized image doesn't exist then the widget try to create it before throwing an error
 * Since V1.1: We can display the original file (with the original size)
-$ Since V1.2: We can generate the newly sized image whitout displaying it on the screen
+* Since V1.2: We can generate the newly sized image whitout displaying it on the screen
 
 ##Requirements 
 
@@ -316,6 +316,7 @@ All we have to do is set the option `displayImage` to false in the widget. All t
 * `id` : Id of the image tag
 * `class` : Class of the image tag
 * `group` : Name of the group the image belongs to
+* `displayImage` : Weither or not we should display the image on the screen. Default to true.
 
 ## Please Note
 
@@ -327,5 +328,9 @@ Feel free to provide some ideas of improvment and if you provide some pull reque
 ## Links
 
 * [The Github page](https://github.com/Darkheir/SAImageDisplayer)
+
+##Updates
+* **1.1:** Add the ability to display the image with its original size
+* **1.2:** Add the ability to not display the generated image (it will only resize the original one in the right folder)
 
 
