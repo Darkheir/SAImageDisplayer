@@ -108,6 +108,15 @@ class SAImageDisplayer extends CWidget {
      */
     public $group = null;
 
+    /**
+     * Weither or not we need to display the image tag
+     * If false is selected then the image will be resized and
+     * all the other actions will be performed except displaying
+     * the image tag.
+     * @var boolean
+     */
+    public $displayImage = true;
+
     
     private $originalFile;
     private $src;
@@ -131,7 +140,10 @@ class SAImageDisplayer extends CWidget {
     }
 
     public function run() {
-        echo '<img src="' . $this->src . '" title="' . $this->getTitle() . '" alt="' . $this->getAlt() . '" id="' . $this->id . '" class="' . $this->class . '" />';
+        if($this->displayImage) {
+            echo '<img src="' . $this->src . '" title="' . $this->getTitle() . '" alt="' . $this->getAlt() . '" id="' . $this->id . '" class="' . $this->class . '" />';
+ 
+        }
     }
 
     /**

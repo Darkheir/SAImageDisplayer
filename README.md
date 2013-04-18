@@ -4,7 +4,7 @@ SAImageDisplayer
 SAImageDisplayer is a Yii Widget providing a better display of images in the views.
 
 ##Description 
-This extension resize images and thumbnail only when they are called and if resized image or his thumbnail not exists. This means that you can upload images without take care of dimensions.
+This extension resizes images and thumbnail only when they are called and if resized image or his thumbnail not exists. This means that you can upload images without take care of dimensions.
 
 This extension is based on justintimeimageresizer extension adding some improvements :
 
@@ -16,6 +16,7 @@ This extension is based on justintimeimageresizer extension adding some improvem
 * We can choose the name of the folder storing the originals images
 * If the folder that should contain the resized image doesn't exist then the widget try to create it before throwing an error
 * Since V1.1: We can display the original file (with the original size)
+$ Since V1.2: We can generate the newly sized image whitout displaying it on the screen
 
 ##Requirements 
 
@@ -270,6 +271,21 @@ This way you'll endup with a structure looking like:
            thumb/ 
         thumb/
         tiny/
+
+### If I want generate a new image size whitout displaying it?
+
+Since v1.2 we can generate a new image size whitout displaying the image on the screen!
+All we have to do is set the option `displayImage` to false in the widget. All the other operations will be performed except displaying the image tag.
+
+```php
+<?php $this->widget('ext.SAImageDisplayer', array(
+    'image' => 'yourImage.png',
+    'size' => 'thumb',
+    'defaultImage' => 'default.png',
+    'displayImage' => false,
+)); ?>
+```
+  
 
 ## List of all the available options
 
