@@ -1,6 +1,7 @@
 <?php
 
-class SAImageDisplayer extends CWidget {
+class SAImageDisplayer extends CWidget 
+{
 
     /**
      * The type of width and height we would like
@@ -118,14 +119,15 @@ class SAImageDisplayer extends CWidget {
     public $displayImage = true;
 
     
-    private $originalFile;
-    private $src;
-    private $width;
-    private $height;
-    private $basePath;
-    private $imageFile;
+    private $_originalFile;
+    private $_src;
+    private $_width;
+    private $_height;
+    private $_basePath;
+    private $_imageFile;
 
-    public function init() {
+    public function init() 
+    {
         $this->setBasePath();
 		if( $this->size !== 'original') {
 			$this->setWidthAndHeight();
@@ -139,9 +141,10 @@ class SAImageDisplayer extends CWidget {
 		}
     }
 
-    public function run() {
+    public function run() 
+    {
         if($this->displayImage) {
-            echo '<img src="' . $this->src . '" title="' . $this->getTitle() . '" alt="' . $this->getAlt() . '" id="' . $this->id . '" class="' . $this->class . '" />';
+            echo '<img src="' . $this->_src . '" title="' . $this->getTitle() . '" alt="' . $this->getAlt() . '" id="' . $this->id . '" class="' . $this->class . '" />';
  
         }
     }
@@ -149,8 +152,9 @@ class SAImageDisplayer extends CWidget {
     /**
      * Set the src to the file
      */
-    private function defineSrc($imageFolder) {
-        $this->src = $this->baseDir . '/'. $imageFolder . '/' . $this->image;
+    private function defineSrc($imageFolder) 
+    {
+        $this->_src = $this->baseDir . '/'. $imageFolder . '/' . $this->image;
     }
 
     /**
@@ -158,38 +162,41 @@ class SAImageDisplayer extends CWidget {
      * or the default one if the previous one doesn't exist.
      * Throw an error if the image given doesn't exist and no default image is defined
      */
-    private function defineImageFile($imageFolder) {
+    private function defineImageFile($imageFolder) 
+    {
         if (!$this->image) {
             throw new Exception('Image cannot be null!');
         }
-        $this->originalFile = $this->basePath . '/' . $this->originalFolderName . '/' . $this->image;
-        if(!file_exists($this->originalFile) && $this->defaultImage !== null){
+        $this->_originalFile = $this->_basePath . '/' . $this->originalFolderName . '/' . $this->image;
+        if(!file_exists($this->_originalFile) && $this->defaultImage !== null){
             $this->image = $this->defaultImage;
-            $this->originalFile = $this->basePath . '/' . $this->originalFolderName . '/' . $this->image;
+            $this->_originalFile = $this->_basePath . '/' . $this->originalFolderName . '/' . $this->image;
         } 
-        if (!file_exists($this->originalFile)) {
+        if (!file_exists($this->_originalFile)) {
             throw new Exception($this->image . ' do not exists!');
         }
-        $this->imageFile = $this->basePath . '/' . $imageFolder . '/' . $this->image;
+        $this->_imageFile = $this->_basePath . '/' . $imageFolder . '/' . $this->image;
     }
 
     /**
      * Create the resized image if it doesn't exist
      */
-    private function createImagesIfNotExists() {
-        if (!file_exists($this->imageFile)) {
+    private function createImagesIfNotExists() 
+    {
+        if (!file_exists($this->_imageFile)) {
             Yii::import('application.extensions.image.Image');
-            $image = new Image($this->originalFile);
-            $image->resize($this->width, $this->height);
-            $image->save($this->imageFile);
+            $image = new Image($this->_originalFile);
+            $image->resize($this->_width, $this->_height);
+            $image->save($this->_imageFile);
         }
     }
 
     /**
      * Check if the image is set and the folder exists or can be created
      */
-    private function checkIfFolderExists() {
-        $path = $this->basePath . '/' . $this->size;
+    private function checkIfFolderExists() 
+    {
+        $path = $this->_basePath . '/' . $this->size;
         if (!file_exists($path)) {
             if(!mkdir($path, 0777, true)) {
                 throw new Exception($path . ' do not exists and can\'t be created!');
@@ -201,14 +208,16 @@ class SAImageDisplayer extends CWidget {
      * Check if the size setted exists and is valid
      * Load the params from the conf or set the default values
      */
-    private function setBasePath() {
+    private function setBasePath() 
+    {
         if($this->group !== null) {
             $this->baseDir = $this->baseDir . '/' . $this->group; 
         }
-        $this->basePath = YiiBase::getPathOfAlias('webroot') . '/' . $this->baseDir;
+        $this->_basePath = YiiBase::getPathOfAlias('webroot') . '/' . $this->baseDir;
     }
 
-    private function setWidthAndHeight() {
+    private function setWidthAndHeight() 
+    {
         if($this->group !== null){
             $size =$this->groups[$this->group][$this->size];
         } else {
@@ -221,8 +230,8 @@ class SAImageDisplayer extends CWidget {
         } elseif ($size['height'] == null) {
             throw new Exception('The height is not defined for this size type!');
         }
-        $this->width = $size['width'];
-        $this->height = $size['height'];
+        $this->_width = $size['width'];
+        $this->_height = $size['height'];
     }
 
     private function getTitle() {
