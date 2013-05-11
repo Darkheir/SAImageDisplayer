@@ -144,7 +144,13 @@ class SAImageDisplayer extends CWidget
     public function run() 
     {
         if($this->displayImage) {
-            echo '<img src="' . Yii::app()->baseUrl . '/' . $this->_src . '" title="' . $this->getTitle() . '" alt="' . $this->getAlt() . '" id="' . $this->id . '" class="' . $this->class . '" />';
+            echo '<img src="' . Yii::app()->baseUrl . '/' . $this->_src .
+                     '" title="' . $this->getTitle() . 
+                     '" alt="' . $this->getAlt() . 
+                     '" id="' . $this->id .
+                     '" width="' . $this->_width .
+                     '" height="' . $this->_height . 
+                     '" class="' . $this->class . '" />';
         }
     }
 
