@@ -332,5 +332,7 @@ Feel free to provide some ideas of improvment and if you provide some pull reque
 ##Updates
 * **1.1:** Add the ability to display the image with its original size
 * **1.2:** Add the ability to not display the generated image (it will only resize the original one in the right folder)
+* **1.3:** Add the base url to the image path when displaying it
+* **1.4:** Adding "width" and "height" tags to the generated image since it's a good practice: [PageSpeed best practices](https://developers.google.com/speed/docs/best-practices/rendering?hl=fr#SpecifyImageDimensions) 
 
 
