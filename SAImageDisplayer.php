@@ -189,8 +189,7 @@ class SAImageDisplayer extends CWidget
     private function createImagesIfNotExists() 
     {
         if (!file_exists($this->_imageFile)) {
-            Yii::import('application.extensions.image.Image');
-            $image = new Image($this->_originalFile);
+            $image = Yii::app()->image->load($this->_originalFile);
             $image->resize($this->_width, $this->_height);
             $image->save($this->_imageFile);
         }
