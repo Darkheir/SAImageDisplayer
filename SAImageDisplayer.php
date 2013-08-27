@@ -3,6 +3,11 @@
 class SAImageDisplayer extends CWidget 
 {
 
+    const NONE = 1;
+    const AUTO = 2;
+    const HEIGHT = 3;
+    const WIDTH = 4;
+
     /**
      * The type of width and height we would like
      * to display. The name and the sizes have to be
@@ -19,6 +24,11 @@ class SAImageDisplayer extends CWidget
      * Id of the href link
      */
 	public $id = "";
+	
+	/**
+	* To add some others attributes to the image
+	*/
+	public $othersAttributes = array();
 
     /**
      * Title of the href link
@@ -118,6 +128,12 @@ class SAImageDisplayer extends CWidget
      */
     public $displayImage = true;
 
+    /**
+     * The master dimmension to resize the image.
+     * Options are :  SAImageDisplayer::NONE, SAImageDisplayer::AUTO, SAImageDisplayer::HEIGHT, SAImageDisplayer::WIDTH
+     */
+    public $resizeMode = SAImageDisplayer::AUTO;
+
     
     private $_originalFile;
     private $_src;
@@ -144,13 +160,19 @@ class SAImageDisplayer extends CWidget
     public function run() 
     {
         if($this->displayImage) {
+			$addAttributes = "";
+			foreach($this->othersAttributes as $name => $value) {
+				$addAttributes .= $name . '="' . $value . '" ';
+			}
             echo '<img src="' . Yii::app()->baseUrl . '/' . $this->_src .
                      '" title="' . $this->getTitle() . 
                      '" alt="' . $this->getAlt() . 
                      '" id="' . $this->id .
                      '" width="' . $this->_width .
                      '" height="' . $this->_height . 
-                     '" class="' . $this->class . '" />';
+                     '" class="' . $this->class . '" ' .
+					 $addAttributes .
+				 '/>';
         }
     }
 
@@ -190,7 +212,7 @@ class SAImageDisplayer extends CWidget
     {
         if (!file_exists($this->_imageFile)) {
             $image = Yii::app()->image->load($this->_originalFile);
-            $image->resize($this->_width, $this->_height);
+            $image->resize($this->_width, $this->_height, $this->resizeMode);
             $image->save($this->_imageFile);
         }
     }

@@ -18,6 +18,8 @@ This extension is based on justintimeimageresizer extension adding some improvem
 * Since V1.1: We can display the original file (with the original size)
 * Since V1.2: We can generate the newly sized image whitout displaying it on the screen
 
+(For others updates see below)
+
 ##Requirements 
 
 * Yii 1.1 or above
@@ -317,6 +319,8 @@ All we have to do is set the option `displayImage` to false in the widget. All t
 * `class` : Class of the image tag
 * `group` : Name of the group the image belongs to
 * `displayImage` : Weither or not we should display the image on the screen. Default to true.
+* `resizeMode` : How images should be resize by the image extension. Available options are SAImageDisplayer::NONE, SAImageDisplayer::AUTO, SAImageDisplayer::HEIGHT, SAImageDisplayer::WIDTH. Default to AUTO.
+* `othersAttributes` : An array `array('attributeName' => 'value')` keeping all the additional attribute we wish to add to the image tag.
 
 ## Please Note
 
@@ -334,5 +338,7 @@ Feel free to provide some ideas of improvment and if you provide some pull reque
 * **1.2:** Add the ability to not display the generated image (it will only resize the original one in the right folder)
 * **1.3:** Add the base url to the image path when displaying it
 * **1.4:** Adding "width" and "height" tags to the generated image since it's a good practice: [PageSpeed best practices](https://developers.google.com/speed/docs/best-practices/rendering?hl=fr#SpecifyImageDimensions) 
+* **1.5** Now Image extension can use ImageMagick or GD library to resize images. (Before it was only GD no matter what was the user configuration).
+* **1.6:** Add the ability to choose which resize mode to use (NONE, AUTO, WIDTH, HEIGHT), add the ability to add other attributes to the image tag.
 
 
