@@ -144,45 +144,45 @@ class SAImageDisplayer extends CWidget
 
     public function init() 
     {
-      try
-      {
-        $this->setBasePath();
-        if( $this->size !== 'original') {
-          $this->setWidthAndHeight();
-          $this->checkIfFolderExists();
-          $this->defineImageFile($this->size);
-          $this->createImagesIfNotExists();
-          $this->defineSrc($this->size);
-        } else {
-          $this->defineImageFile($this->originalFolderName);
-          $this->defineSrc($this->originalFolderName);
-        }
-      }
-      catch(Exception $e) {
-        if (YII_DEBUG === FALSE)
+        try
         {
-          $this->displayImage = FALSE;
+            $this->setBasePath();
+            if( $this->size !== 'original') {
+                $this->setWidthAndHeight();
+                $this->checkIfFolderExists();
+                $this->defineImageFile($this->size);
+                $this->createImagesIfNotExists();
+                $this->defineSrc($this->size);
+            } else {
+                $this->defineImageFile($this->originalFolderName);
+                $this->defineSrc($this->originalFolderName);
+            }
         }
-      }
+        catch(Exception $e) {
+            if (YII_DEBUG === FALSE)
+            {
+                $this->displayImage = FALSE;
+            }
+        }
     }
 
     public function run() 
     {
-      if($this->displayImage) {
-        $addAttributes = "";
-        foreach($this->othersAttributes as $name => $value) {
-          $addAttributes .= $name . '="' . $value . '" ';
-        }
-        echo '<img src="' . Yii::app()->baseUrl . '/' . $this->_src .
+        if($this->displayImage) {
+            $addAttributes = "";
+            foreach($this->othersAttributes as $name => $value) {
+                $addAttributes .= $name . '="' . $value . '" ';
+            }
+            echo '<img src="' . Yii::app()->baseUrl . '/' . $this->_src .
                      '" title="' . $this->getTitle() . 
                      '" alt="' . $this->getAlt() . 
                      '" id="' . $this->id .
                      '" width="' . $this->_width .
                      '" height="' . $this->_height . 
                      '" class="' . $this->class . '" ' .
-           $addAttributes .
-         '/>';
-      }
+                     $addAttributes .
+           '/>';
+        }
     }
 
     /**
