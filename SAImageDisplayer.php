@@ -144,8 +144,7 @@ class SAImageDisplayer extends CWidget
 
     public function init() 
     {
-        try
-        {
+        try {
             $this->setBasePath();
             if( $this->size !== 'original') {
                 $this->setWidthAndHeight();
@@ -157,11 +156,10 @@ class SAImageDisplayer extends CWidget
                 $this->defineImageFile($this->originalFolderName);
                 $this->defineSrc($this->originalFolderName);
             }
-        }
-        catch(Exception $e) {
-            if (YII_DEBUG === FALSE)
+        } catch(Exception $e) {
+            if (YII_DEBUG === false)
             {
-                $this->displayImage = FALSE;
+                $this->displayImage = false;
             }
         }
     }
@@ -253,7 +251,7 @@ class SAImageDisplayer extends CWidget
 
     private function setWidthAndHeight() 
     {
-        if($this->group !== null){
+        if($this->group !== null) {
             $size =$this->groups[$this->group][$this->size];
         } else {
             $size = $this->sizes[$this->size];
