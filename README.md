@@ -340,5 +340,5 @@ Feel free to provide some ideas of improvment and if you provide some pull reque
 * **1.4:** Adding "width" and "height" tags to the generated image since it's a good practice: [PageSpeed best practices](https://developers.google.com/speed/docs/best-practices/rendering?hl=fr#SpecifyImageDimensions) 
 * **1.5** Now Image extension can use ImageMagick or GD library to resize images. (Before it was only GD no matter what was the user configuration).
 * **1.6:** Add the ability to choose which resize mode to use (NONE, AUTO, WIDTH, HEIGHT), add the ability to add other attributes to the image tag.
-
+* **1.7** Thanks to Oreolek the exceptions are now handled internally if not in debug mode.
 
