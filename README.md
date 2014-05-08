@@ -318,8 +318,8 @@ All we have to do is set the option `displayImage` to false in the widget. All t
 * `id` : Id of the image tag
 * `class` : Class of the image tag
 * `group` : Name of the group the image belongs to
-* `displayImage` : Weither or not we should display the image on the screen. Default to true.
-* `resizeMode` : How images should be resize by the image extension. Available options are SAImageDisplayer::NONE, SAImageDisplayer::AUTO, SAImageDisplayer::HEIGHT, SAImageDisplayer::WIDTH. Default to AUTO.
+* `displayImage` : Whether or not we should display the image on the screen. Default to true.
+* `resizeMode` : How images should be resized by the image extension. Available options are `SAImageDisplayer::NONE`, `SAImageDisplayer::AUTO`, `SAImageDisplayer::HEIGHT`, `SAImageDisplayer::WIDTH`. Default to `AUTO`.
 * `othersAttributes` : An array `array('attributeName' => 'value')` keeping all the additional attribute we wish to add to the image tag.
 
 ## Please Note
