@@ -23,17 +23,17 @@ class SAImageDisplayer extends CWidget
     /**
      * Id of the href link
      */
-	public $id = "";
-	
-	/**
-	* To add some others attributes to the image
-	*/
-	public $othersAttributes = array();
+    public $id = "";
+  
+    /**
+    * To add some others attributes to the image
+    */
+    public $othersAttributes = array();
 
     /**
      * Title of the href link
      */
-	public $title = null;
+    public $title = null;
 
     /**
      * Alternative text of the href link
@@ -135,35 +135,44 @@ class SAImageDisplayer extends CWidget
     public $resizeMode = SAImageDisplayer::AUTO;
 
     
-    private $_originalFile;
-    private $_src;
-    private $_width;
-    private $_height;
-    private $_basePath;
-    private $_imageFile;
+    protected $_originalFile;
+    protected $_src;
+    protected $_width;
+    protected $_height;
+    protected $_basePath;
+    protected $_imageFile;
 
     public function init() 
     {
-        $this->setBasePath();
-		if( $this->size !== 'original') {
-			$this->setWidthAndHeight();
-			$this->checkIfFolderExists();
-			$this->defineImageFile($this->size);
-			$this->createImagesIfNotExists();
-			$this->defineSrc($this->size);
-		} else {
-			$this->defineImageFile($this->originalFolderName);
-			$this->defineSrc($this->originalFolderName);
-		}
+        try
+        {
+            $this->setBasePath();
+            if( $this->size !== 'original') {
+                $this->setWidthAndHeight();
+                $this->checkIfFolderExists();
+                $this->defineImageFile($this->size);
+                $this->createImagesIfNotExists();
+                $this->defineSrc($this->size);
+            } else {
+                $this->defineImageFile($this->originalFolderName);
+                $this->defineSrc($this->originalFolderName);
+            }
+        }
+        catch(Exception $e) {
+            if (YII_DEBUG === FALSE)
+            {
+                $this->displayImage = FALSE;
+            }
+        }
     }
 
     public function run() 
     {
         if($this->displayImage) {
-			$addAttributes = "";
-			foreach($this->othersAttributes as $name => $value) {
-				$addAttributes .= $name . '="' . $value . '" ';
-			}
+            $addAttributes = "";
+            foreach($this->othersAttributes as $name => $value) {
+                $addAttributes .= $name . '="' . $value . '" ';
+            }
             echo '<img src="' . Yii::app()->baseUrl . '/' . $this->_src .
                      '" title="' . $this->getTitle() . 
                      '" alt="' . $this->getAlt() . 
@@ -171,8 +180,8 @@ class SAImageDisplayer extends CWidget
                      '" width="' . $this->_width .
                      '" height="' . $this->_height . 
                      '" class="' . $this->class . '" ' .
-					 $addAttributes .
-				 '/>';
+                     $addAttributes .
+           '/>';
         }
     }
 
