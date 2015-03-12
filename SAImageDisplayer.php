@@ -256,11 +256,11 @@ class SAImageDisplayer extends CWidget
         } else {
             $size = $this->sizes[$this->size];
         }
-        if($size == null) {
+        if($size === null) {
             throw new Exception($this->size . ' is not a valid size type!');
-        } elseif ($size['width'] == null) {
+        } elseif ($size['width'] === null) {
             throw new Exception('The width is not defined for this size type!');
-        } elseif ($size['height'] == null) {
+        } elseif ($size['height'] === null) {
             throw new Exception('The height is not defined for this size type!');
         }
         $this->_width = $size['width'];
